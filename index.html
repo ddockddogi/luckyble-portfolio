@@ -860,6 +860,11 @@
 </section>
 
 <style>
+  html {
+  -webkit-text-size-adjust: 100%;
+}
+
+
   .pf-hero {
     background:#9748FF; /* 오렌지 배경 */
     padding:40px 20px;
@@ -885,6 +890,14 @@
   font-size: 20px;     /* 기존 디자인 크기와 유사하게 */
   font-weight: 700;    /* 기존 굵기 유지 */
   }
+
+  /* Album Artwork 텍스트도 About과 동일한 크기/굵기로 고정 */
+  .pf-gallery-trigger {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+
 
 
     .pf-inner {
@@ -1024,51 +1037,96 @@
     color:#fff;
   }
 
-  /* 반응형: 모바일에서는 높이를 자동으로 늘리고 카드 크기 축소 */
-    @media (max-width:768px){
+  /* 반응형: 모바일 전용 레이아웃 */
+  @media (max-width:768px){
+
     .pf-inner {
-        height:auto;
+      height: auto;
+      padding-bottom: 16px;
     }
 
+    /* 🔹 헤더를 세로 구조로 변경 */
     .pf-top {
-        font-size:12px;
-        padding:16px 16px 8px;
+      flex-direction: column;        /* 가로 → 세로 */
+      align-items: flex-start;
+      gap: 10px;
+      padding: 16px 16px 12px;
+      font-size: 12px;
     }
 
+    /* 로고는 가운데 배치 */
+    .pf-top-left {
+      max-width: 100%;
+      align-self: center;
+    }
+
+    /* 데스크탑용 마이너스 마진 초기화 */
+    .pf-logo {
+      margin-top: 0;
+      margin-left: 0;
+    }
+
+    /* 🔹 [행 구분] + 메뉴1 + [행 구분] + 메뉴2 느낌 */
+    .pf-top-center,
+    .pf-top-right {
+      max-width: 100%;
+      width: 100%;
+      border-top: 1px solid #000;   /* 행 구분선 */
+      padding-top: 10px;
+    }
+
+    /* 제목/메뉴 텍스트 모바일용 통일 (강제 통일 버전) */
+    .pf-main-title .pf-gallery-trigger,
+    .pf-link.pf-about-trigger {
+      font-size: 18px !important;   /* 둘 다 완전 같은 크기 */
+      font-weight: 700 !important;  /* 굵기도 강제 통일 */
+    }
+
+
+    .pf-top-center span,
+    .pf-top-right span {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+    }
+
+    /* 🔹 썸네일 1:1 유지 + 2열 그리드 */
     .pf-collage {
-        margin:16px;
-        height:auto;
-        display:grid;
-        grid-template-columns:repeat(2, 1fr);
-        gap:8px;
-        justify-items:center;
+      margin: 12px 12px 20px;
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);  /* 2분할 */
+      gap: 12px;
+      justify-items: center;
     }
 
     .pf-card {
-        position:static;
-        transform:none;
-        box-shadow:0 8px 18px rgba(0,0,0,0.18);
-        cursor:pointer;
+      position: static;
+      transform: none;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+      cursor: pointer;
     }
 
     .pf-card img {
-        width:100%;
-        aspect-ratio:1 / 1;   /* 정사각형 비율 유지 */
-        object-fit:cover;     /* 꽉 채우되 넘치는 부분 크롭 */
-        display:block;
+      width: 100%;
+      aspect-ratio: 1 / 1;   /* 정사각형 유지 */
+      object-fit: cover;
+      display: block;
     }
 
+    /* 🔹 하단 바 모바일 정리 */
     .pf-bottom {
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
-        padding:10px 16px 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 16px 20px;
     }
 
     .pf-note {
-        max-width:100%;
+      max-width: 100%;
     }
-    }
+  }
+
 
 
     /* ===== Modal (Popup) ===== */
